@@ -4,8 +4,8 @@
 <div class="row w-100 mx-0">
     <div class="col-lg-4 mx-auto">
       <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-            <h4>Hello! Welcome </h4>
-            <h6 class="fw-light">Create an account to continue.</h6>
+            <h4>¡Hola! Bienvenido</h4>
+            <h6 class="fw-light">Crea una cuenta para continuar.</h6>
             <form class="pt-3" method="POST">
                 {% csrf_token %}
                 {% if form.non_field_errors %}
@@ -42,12 +42,11 @@
                 </div>
 
                 <div class="mt-3">
-                    <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">REGISTER</button>
+                    <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">REGISTRARSE</button>
                 </div>
 
-
                 <div class="mt-4 fw-light">
-                    Have an account? <a href="{% url 'login' %}" class="text-primary">Login</a>
+                    ¿Ya tienes una cuenta? <a href="{% url 'login' %}" class="text-primary">Inicia sesión</a>
                 </div>
             </form>
 

@@ -6,7 +6,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Library Management System </title>
+  <title>Sistema de gestión de libros</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="{% static 'assets/vendors/feather/feather.css' %}">
   <link rel="stylesheet" href="{% static 'assets/vendors/mdi/css/materialdesignicons.min.css' %}">
@@ -41,7 +41,7 @@
     </div>
     <div>
       <a class="" href="{% url 'home' %}" style="font-size: 20px; font-weight: 900; color: #000;">
-        LMS
+        SGL
       </a>
 
     </div>
@@ -49,7 +49,7 @@
   <div class="navbar-menu-wrapper d-flex align-items-top">
     <ul class="navbar-nav">
       <li class="nav-item font-weight-semibold d-none d-lg-block ms-0">
-        <h1 class="welcome-text">Good {{ greeting }}, <span class="text-black fw-bold">{{ request.user.first_name }} {{ request.user.last_name }}</span></h1>
+        <h1 class="welcome-text">Buenas {{ greeting }}, <span class="text-black fw-bold">{{ request.user.first_name }} {{ request.user.last_name }}</span></h1>
 
       </li>
     </ul>
@@ -91,33 +91,33 @@
         <span class="menu-title">Dashboard</span>
       </a>
     </li>
-    <li class="nav-item nav-category">Users</li>
+    <li class="nav-item nav-category">Usuarios</li>
     <li class="nav-item">
       <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
         <i class="menu-icon mdi mdi-account-multiple"></i>
-        <span class="menu-title">Members</span>
+        <span class="menu-title">Miembros</span>
         <i class="menu-arrow"></i>
       </a>
       <div class="collapse" id="ui-basic">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="{% url 'add-member' %}">Add Member</a></li>
-          <li class="nav-item"> <a class="nav-link" href="{% url 'members' %}">View Members</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{% url 'add-member' %}">Agregar Miembros</a></li>
+          <li class="nav-item"> <a class="nav-link" href="{% url 'members' %}">Ver Miembros</a></li>
         </ul>
       </div>
     </li>
-    <li class="nav-item nav-category">Library</li>
+    <li class="nav-item nav-category">Biblioteca</li>
     <li class="nav-item">
       <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false"
         aria-controls="form-elements">
         <i class="menu-icon mdi mdi-book-multiple"></i>
-        <span class="menu-title">Books</span>
+        <span class="menu-title">Libros</span>
         <i class="menu-arrow"></i>
       </a>
       <div class="collapse" id="form-elements">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"><a class="nav-link" href="{% url 'add-book' %}">Add Book</a></li>
-          <li class="nav-item"><a class="nav-link" href="{% url 'books' %}">View Books</a></li>
-          <li class="nav-item"><a class="nav-link" href="{% url 'lent-books' %}">Lent Books</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'add-book' %}">Agregar Libros</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'books' %}">Ver Libros</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'lent-books' %}">Prestar Libros</a></li>
         </ul>
       </div>
     </li>
@@ -125,20 +125,20 @@
       <a class="nav-link" data-bs-toggle="collapse" href="#payments" aria-expanded="false"
         aria-controls="payments">
         <i class="menu-icon mdi mdi-credit-card-multiple"></i>
-        <span class="menu-title">Payments</span>
+        <span class="menu-title">Pagos</span>
         <i class="menu-arrow"></i>
       </a>
       <div class="collapse" id="payments">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"><a class="nav-link" href="{% url 'payments' %}">View Payments</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'payments' %}">Ver Pagos</a></li>
         </ul>
       </div>
     </li>
-    <li class="nav-item nav-category">Activities</li>
+    <li class="nav-item nav-category">Actividades</li>
     <li class="nav-item">
       <a class="nav-link" href="{% url 'logout' %}">
         <i class="menu-icon mdi mdi-account-circle"></i>
-        <span class="menu-title">Logout</span>
+        <span class="menu-title">Cerrar Sesión</span>
         <i class="menu-arrow"></i>
       </a>
     </li>
@@ -155,7 +155,7 @@
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
           <div class="d-sm-flex justify-content-center justify-content-sm-between">
-            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Library Management System.</span>
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Sistema de gestión de libros.</span>
             <span class="float-none float-sm-end d-block mt-1 mt-sm-0 text-center">Copyright © 2024. All rights reserved.</span>
           </div>
         </footer>
