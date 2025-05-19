@@ -4,10 +4,10 @@ from datetime import datetime
 def greeting(request):
     current_time = datetime.now().time()
     if current_time.hour < 12:
-        greeting = "Morning"
+        greeting = "Dias"
     elif current_time.hour < 16:
-        greeting = "Afternoon"
+        greeting = "Tardes"
     else:
-        greeting = "Evening"
+        greeting = "Noches"
 
     return {"greeting": greeting}

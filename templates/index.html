@@ -17,19 +17,19 @@
 
 
                     <div class="col">
-                      <p class="statistics-title">Members</p>
+                      <p class="statistics-title">Miembros</p>
                       <a href="{% url 'members' %}" class="stats"><h3 class="rate-percentage">{{ total_members }}</h3></a>
                     </div>
                     <div class="col">
-                      <p class="statistics-title">Books</p>
+                      <p class="statistics-title">Libros</p>
                       <a href="{% url 'books' %}" class="stats"><h3 class="rate-percentage">{{ total_books }}</h3></a>
                     </div>
                     <div class="col">
-                      <p class="statistics-title">Borrowed Books</p>
+                      <p class="statistics-title">Libros Prestados</p>
                       <a href="{% url 'lent-books' %}" class="stats"><h3 class="rate-percentage">{{ total_borrowed_books }}</h3></a>
                     </div>
                     <div class="col">
-                      <p class="statistics-title">Overdue Books</p>
+                      <p class="statistics-title">Libros Atrasados</p>
                       <a href="{% url 'overdue-books' %}" class="stats"><h3 class="rate-percentage">{{ total_overdue_books }}</h3></a>
                     </div>
                   </div>
@@ -43,17 +43,17 @@
                           <div class="card-body">
                             <div class="d-sm-flex justify-content-between align-items-start">
                               <div>
-                               <h4 class="card-title card-title-dash">Recently Added Books</h4>
+                               <h4 class="card-title card-title-dash">Libros Agregados Recientemente</h4>
                               </div>
                             </div>
                             <div class="table-responsive ">
                               <table class="table select-table">
                                 <thead>
                                   <tr>
-                                    <th>Title</th>
-                                    <th>Author</th>
-                                    <th>Category</th>
-                                    <th>Quantity</th>
+                                    <th>Título</th>
+                                    <th>Autor</th>
+                                    <th>Categoría</th>
+                                    <th>Cantidad</th>
                                   </tr>
                                 </thead>
                                 <tbody>
@@ -78,11 +78,11 @@
                     <div class="col-md-6 col-lg-12 grid-margin stretch-card">
                       <div class="card bg-primary card-rounded">
                         <div class="card-body pb-0">
-                          <h4 class="card-title card-title-dash text-white mb-4">Amount</h4>
+                          <h4 class="card-title card-title-dash text-white mb-4">Cantidad</h4>
                           <div class="row">
                             <div class="col-sm-8">
-                              <p class="status-summary-ight-white mb-1">Total amount</p>
-                              <h2 class="text-info">Ksh {{total_amount}}</h2>
+                              <p class="status-summary-ight-white mb-1">Cantidad Total</p>
+                              <h2 class="text-info">COP {{total_amount}}</h2>
                             </div>
                             <div class="col-sm-4">
                               <div class="status-summary-chart-wrapper pb-4">
@@ -98,9 +98,9 @@
                     <div class="col-md-6 col-lg-12 grid-margin stretch-card">
                       <div class="card bg-primary card-rounded">
                         <div class="card-body pb-0">
-                          <h4 class="card-title card-title-dash text-white">Overdue Amount</h4>
+                          <h4 class="card-title card-title-dash text-white">Cantidad Atrasados</h4>
 
-                              <h2 class="text-info mb-4">Ksh {{overdue_amount}}</h2>
+                              <h2 class="text-info mb-4">COP {{overdue_amount}}</h2>
 
                         </div>
                       </div>
