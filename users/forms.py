@@ -8,11 +8,11 @@ from .models import Librarian
 
 class LoginForm(forms.Form):
     email = forms.CharField(
-        widget=forms.EmailInput(attrs={"class": "form-control form-control-lg", "placeholder": "Enter Email"}),
+        widget=forms.EmailInput(attrs={"class": "form-control form-control-lg", "placeholder": "Correo electrónico"}),
     )
 
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={"class": "form-control form-control-lg", "placeholder": "Enter Password"}),
+        widget=forms.PasswordInput(attrs={"class": "form-control form-control-lg", "placeholder": "Contraseña"}),
     )
 
     class Meta:
@@ -22,30 +22,30 @@ class LoginForm(forms.Form):
         email = self.cleaned_data.get("email")
 
         if not Librarian.objects.filter(email=email).exists():
-            raise ValidationError(_("User with that email does not exist"))
+            raise ValidationError(_("Usuario con ese correo no existe"))
 
         return email
 
 
 class RegisterForm(forms.ModelForm):
     first_name = forms.CharField(
-        widget=forms.TextInput(attrs={"class": "form-control form-control-lg", "placeholder": "Enter First Name"}),
+        widget=forms.TextInput(attrs={"class": "form-control form-control-lg", "placeholder": "Nombre"}),
     )
 
     last_name = forms.CharField(
-        widget=forms.TextInput(attrs={"class": "form-control form-control-lg", "placeholder": "Enter Last Name"}),
+        widget=forms.TextInput(attrs={"class": "form-control form-control-lg", "placeholder": "Apellido"}),
     )
 
     email = forms.CharField(
-        widget=forms.EmailInput(attrs={"class": "form-control form-control-lg", "placeholder": "Enter Email"}),
+        widget=forms.EmailInput(attrs={"class": "form-control form-control-lg", "placeholder": "Correo electrónico"}),
     )
 
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={"class": "form-control form-control-lg", "placeholder": "Enter Password"}),
+        widget=forms.PasswordInput(attrs={"class": "form-control form-control-lg", "placeholder": "Contraseña"}),
     )
 
     repeat_password = forms.CharField(
-        widget=forms.PasswordInput(attrs={"class": "form-control form-control-lg", "placeholder": "Repeat Password"}),
+        widget=forms.PasswordInput(attrs={"class": "form-control form-control-lg", "placeholder": "Repetir contraseña"}),
     )
 
     class Meta:
@@ -56,7 +56,7 @@ class RegisterForm(forms.ModelForm):
         email = self.cleaned_data.get("email")
 
         if Librarian.objects.filter(email=email).exists():
-            raise ValidationError(_("Email already exists"))
+            raise ValidationError(_("El correo ya existe"))
 
         return email
 
@@ -75,6 +75,6 @@ class RegisterForm(forms.ModelForm):
         repeat_password = self.cleaned_data.get("repeat_password")
 
         if password != repeat_password:
-            raise ValidationError(_("Passwords do not match"))
+            raise ValidationError(_("Las contraseñas no coinciden"))
 
         return repeat_password
