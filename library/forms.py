@@ -7,10 +7,12 @@ from .models import CATEGORY_CHOICES, PAYMENT_METHOD_CHOICES, Book, BorrowedBook
 
 class AddMemberForm(forms.ModelForm):
     name = forms.CharField(
-        widget=forms.TextInput(attrs={"class": "form-control form-control-lg", "placeholder": "Enter Member Name"})
+        label="Nombre",
+        widget=forms.TextInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese el nombre del miembro"})
     )
     email = forms.EmailField(
-        widget=forms.EmailInput(attrs={"class": "form-control form-control-lg", "placeholder": "Enter Member Email"})
+        label="Correo",
+        widget=forms.EmailInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese el correo del miembro"})
     )
 
     class Meta:
@@ -21,17 +23,17 @@ class AddMemberForm(forms.ModelForm):
         email = self.cleaned_data.get("email")
 
         if Member.objects.filter(email=email).exists():
-            raise ValidationError(_("A member with that email already exists."))
+            raise ValidationError(_("Ya fue agregado un miembro con este correo."))
 
         return email
 
 
 class UpdateMemberForm(forms.ModelForm):
     name = forms.CharField(
-        widget=forms.TextInput(attrs={"class": "form-control form-control-lg", "placeholder": "Enter Member Name"})
+        widget=forms.TextInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese el nombre del miembro"})
     )
     email = forms.EmailField(
-        widget=forms.EmailInput(attrs={"class": "form-control form-control-lg", "placeholder": "Enter Member Email"})
+        widget=forms.EmailInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese el correo del miembro"})
     )
 
     class Meta:
@@ -42,7 +44,7 @@ class UpdateMemberForm(forms.ModelForm):
         email = self.cleaned_data.get("email")
 
         if Member.objects.filter(email=email).exclude(pk=self.instance.pk).exists():
-            raise ValidationError(_("A member with that email already exists."))
+            raise ValidationError(_("Ya fue agregado un miembro con este correo."))
 
         return email
 
