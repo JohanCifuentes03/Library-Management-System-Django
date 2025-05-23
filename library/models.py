@@ -10,17 +10,17 @@ STATUS_CHOICES = (
 )
 
 CATEGORY_CHOICES = (
-    ("fiction", "Fiction"),
-    ("non-fiction", "Non-Fiction"),
-    ("biography", "Biography"),
-    ("history", "History"),
-    ("science", "Science"),
-    ("poetry", "Poetry"),
+    ("ficción", "Ficción"),
+    ("no ficción", "No ficción"),
+    ("biografía", "Biografía"),
+    ("historia", "Historia"),
+    ("ciencia", "Ciencia"),
+    ("poesía", "Poesía"),
     ("drama", "Drama"),
-    ("religion", "Religion"),
-    ("children", "Children"),
-    ("other", "Other"),
-)
+    ("religión", "Religión"),
+    ("infantil", "Infantil"),
+    ("otro", "Otro"),
+    )
 
 PAYMENT_METHOD_CHOICES = (
     ("cash", "Cash"),

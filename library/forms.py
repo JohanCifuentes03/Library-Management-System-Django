@@ -49,21 +49,26 @@ class UpdateMemberForm(forms.ModelForm):
 
 class AddBookForm(forms.ModelForm):
     title = forms.CharField(
-        widget=forms.TextInput(attrs={"class": "form-control form-control-lg", "placeholder": "Enter Book Title"})
-    )
+    label="Titulo",
+        widget=forms.TextInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese el título del libro"})
+    ) 
     author = forms.CharField(
-        widget=forms.TextInput(attrs={"class": "form-control form-control-lg", "placeholder": "Enter Book Author"})
+    label="Autor",
+        widget=forms.TextInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese autor del libro"})
     )
 
     category = forms.ChoiceField(
+    label="Categoría",
         choices=CATEGORY_CHOICES, widget=forms.Select(attrs={"class": "form-control form-control-lg"})
     )
 
     quantity = forms.IntegerField(
-        widget=forms.NumberInput(attrs={"class": "form-control form-control-lg", "placeholder": "Enter Book Quantity"})
+        label="Cantidad",
+        widget=forms.NumberInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese la cantidad"})
     )
 
     borrowing_fee = forms.DecimalField(
+        label="Tarifa de préstamo:",
         widget=forms.NumberInput(attrs={"class": "form-control form-control-lg", "placeholder": "Enter Book Fee"})
     )
 
@@ -74,7 +79,7 @@ class AddBookForm(forms.ModelForm):
 
 class LendBookForm(forms.ModelForm):
     book = forms.ModelChoiceField(
-        label="Book / Books",
+        label="Libro / Libros",
         queryset=Book.objects.filter(quantity__gt=0),
         empty_label=None,
         widget=forms.Select(
@@ -83,17 +88,20 @@ class LendBookForm(forms.ModelForm):
     )
 
     member = forms.ModelChoiceField(
+        label="Miembro",
         queryset=Member.objects.all(),
         empty_label=None,
         widget=forms.Select(attrs={"class": "form-control form-control-lg js-example-basic-single w-100"}),
     )
 
     return_date = forms.DateField(
+        label="Fecha de regreso:",
         widget=forms.DateInput(attrs={"class": "form-control form-control-lg", "type": "date", "id": "return-date"})
     )
 
     fine = forms.DecimalField(
-        widget=forms.NumberInput(attrs={"class": "form-control form-control-lg", "placeholder": "Enter Fine"})
+        label="Sanción",
+        widget=forms.NumberInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese sanción"})
     )
 
     class Meta:
