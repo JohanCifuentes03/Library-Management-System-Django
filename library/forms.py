@@ -62,14 +62,14 @@ class AddBookForm(forms.ModelForm):
     quantity = forms.IntegerField(
         widget=forms.NumberInput(attrs={"class": "form-control form-control-lg", "placeholder": "Enter Book Quantity"})
     )
-
-    borrowing_fee = forms.DecimalField(
-        widget=forms.NumberInput(attrs={"class": "form-control form-control-lg", "placeholder": "Enter Book Fee"})
+    
+    clasification_number = forms.CharField(
+        widget=forms.TextInput(attrs={"class": "form-control form-control-lg", "placeholder": "Enter Book Classification Number"})
     )
 
     class Meta:
         model = Book
-        fields = ["title", "author", "category", "quantity", "borrowing_fee"]
+        fields = ["title", "author", "category", "quantity", "clasification_number"]
 
 
 class LendBookForm(forms.ModelForm):

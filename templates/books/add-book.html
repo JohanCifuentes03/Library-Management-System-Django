@@ -41,6 +41,12 @@
             </div>
 
             <div class="form-group">
+                {{ form.clasification_number.label_tag }}
+                {{ form.clasification_number }}
+                    <div class="form-error">{{ form.isbn.errors }}</div>
+            </div>
+
+            <div class="form-group">
                 {{ form.borrowing_fee.label_tag }}
                 {{ form.borrowing_fee }}
                     <div class="form-error">{{ form.borrowing_fee.errors }}</div>
