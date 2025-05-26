@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
-{% block title %}Add Member{% endblock %}
+{% block title %}Agregar miembro{% endblock %}
 {% block content %}
 <div class="row">
     <div class="col-md-6 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Add Member</h4>
+          <h4 class="card-title">Agregar miembro</h4>
           <p class="card-description">
-            Add Library Member
+            Agregar miembro de la biblioteca
           </p>
           {% if form.non_field_errors %}
             <div class="alert alert-danger form-error" role="alert">
@@ -29,8 +29,8 @@
                     <div class="form-error">{{ form.email.errors }}</div>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-md me-2">Add</button>
-            <a class="btn btn-light" href="{% url 'members' %}">Cancel</a>
+            <button type="submit" class="btn btn-primary btn-md me-2">Agregar</button>
+            <a class="btn btn-light" href="{% url 'members' %}">Cancelar</a>
           </form>
         </div>
       </div>

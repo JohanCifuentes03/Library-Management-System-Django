@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
-{% block title %}Update Member{% endblock %}
+{% block title %}Actualizar miembro{% endblock %}
 {% block content %}
 <div class="row">
     <div class="col-md-6 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Edit {{ member.name }}'s Details</h4>
+          <h4 class="card-title">Editar {{ member.name }}'s Detalles</h4>
           <p class="card-description">
-            Edit Member Details
+            Editar Detalles del Miembro
           </p>
           {% if form.non_field_errors %}
             <div class="alert alert-danger form-error" role="alert">
@@ -29,8 +29,8 @@
                     <div class="form-error">{{ form.email.errors }}</div>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-md me-2">Update</button>
-            <button class="btn btn-light">Cancel</button>
+            <button type="submit" class="btn btn-primary btn-md me-2">Actualizar</button>
+            <button class="btn btn-light">Cancelar</button>
           </form>
         </div>
       </div>
