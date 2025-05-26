@@ -106,9 +106,14 @@ class LendBookForm(forms.ModelForm):
         widget=forms.DateInput(attrs={"class": "form-control form-control-lg", "type": "date", "id": "return-date"})
     )
     
-    condition_notes = forms.DateField(
+    condition_notes = forms.CharField(
         label="Detalles del libro",
-        widget=forms.TextInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese los detalles del libro"})
+        required=False,
+        widget=forms.Textarea(attrs={
+            "class": "form-control form-control-lg",
+            "placeholder": "Ingrese los detalles del libro",
+            "rows": 3
+        })
     )
 
     fine = forms.DecimalField(
@@ -134,9 +139,14 @@ class LendMemberBookForm(forms.ModelForm):
         widget=forms.DateInput(attrs={"class": "form-control form-control-lg", "type": "date", "id": "return-date"})
     )
     
-    condition_notes = forms.DateField(
+    condition_notes = forms.CharField(
         label="Detalles del libro",
-        widget=forms.TextInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese los detalles del libro"})
+        required=False,
+        widget=forms.Textarea(attrs={
+            "class": "form-control form-control-lg",
+            "placeholder": "Ingrese los detalles del libro",
+            "rows": 3
+        })
     )
 
 

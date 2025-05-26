@@ -281,6 +281,7 @@ class LendBookView(View):
                         book=book,
                         return_date=lent_book.return_date,
                         fine=lent_book.fine,
+                        condition_notes=lent_book.condition_notes,
                     )
                     logger.info("Book lent successfully.")
 
@@ -338,7 +339,7 @@ class LendMemberBookView(View):
                 for book_id in book_ids:
                     book = Book.objects.get(pk=book_id)
                     BorrowedBook.objects.create(
-                        member=member, book=book, return_date=lended_book.return_date, fine=lended_book.fine
+                        member=member, book=book, return_date=lended_book.return_date, fine=lended_book.fine, condition_notes=lended_book.condition_notes,
                     )
                     logger.info("Book lent successfully.")
 
