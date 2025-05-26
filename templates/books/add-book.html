@@ -5,9 +5,9 @@
     <div class="col-md-6 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Add Book</h4>
+          <h4 class="card-title">Agregar Libro</h4>
           <p class="card-description">
-            Add A Book
+            Agregar Libro
           </p>
           {% if form.non_field_errors %}
             <div class="alert alert-danger form-error" role="alert">
@@ -52,8 +52,8 @@
                     <div class="form-error">{{ form.borrowing_fee.errors }}</div>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-md me-2">Add</button>
-            <a href="{% url 'books' %}" class="btn btn-light">Cancel</a>
+            <button type="submit" class="btn btn-primary btn-md me-2">Agregar</button>
+            <a href="{% url 'books' %}" class="btn btn-light">Cancelar</a>
           </form>
         </div>
       </div>

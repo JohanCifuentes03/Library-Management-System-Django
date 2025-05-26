@@ -49,26 +49,32 @@ class UpdateMemberForm(forms.ModelForm):
 
 class AddBookForm(forms.ModelForm):
     title = forms.CharField(
-        widget=forms.TextInput(attrs={"class": "form-control form-control-lg", "placeholder": "Enter Book Title"})
-    )
+    label="Titulo",
+        widget=forms.TextInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese el título del libro"})
+    ) 
     author = forms.CharField(
-        widget=forms.TextInput(attrs={"class": "form-control form-control-lg", "placeholder": "Enter Book Author"})
+    label="Autor",
+        widget=forms.TextInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese autor del libro"})
     )
 
     category = forms.ChoiceField(
+    label="Categoría",
         choices=CATEGORY_CHOICES, widget=forms.Select(attrs={"class": "form-control form-control-lg"})
     )
 
     quantity = forms.IntegerField(
-        widget=forms.NumberInput(attrs={"class": "form-control form-control-lg", "placeholder": "Enter Book Quantity"})
+        label="Cantidad",
+        widget=forms.NumberInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese la cantidad"})
     )
     
     borrowing_fee = forms.DecimalField(
-        widget=forms.NumberInput(attrs={"class": "form-control form-control-lg", "placeholder": "Enter Book Fee"})
+        label="Tarifa de préstamo:",
+        widget=forms.NumberInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese la tarifa de préstamo"})
     )
     
     clasification_number = forms.CharField(
-        widget=forms.TextInput(attrs={"class": "form-control form-control-lg", "placeholder": "Enter Book Classification Number"})
+        label="Clasificación",
+        widget=forms.TextInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese la clasificación del libro"})
     )
 
     class Meta:
@@ -78,7 +84,7 @@ class AddBookForm(forms.ModelForm):
 
 class LendBookForm(forms.ModelForm):
     book = forms.ModelChoiceField(
-        label="Book / Books",
+        label="Libro / Libros",
         queryset=Book.objects.filter(quantity__gt=0),
         empty_label=None,
         widget=forms.Select(
@@ -87,22 +93,30 @@ class LendBookForm(forms.ModelForm):
     )
 
     member = forms.ModelChoiceField(
+        label="Miembro",
         queryset=Member.objects.all(),
         empty_label=None,
         widget=forms.Select(attrs={"class": "form-control form-control-lg js-example-basic-single w-100"}),
     )
 
     return_date = forms.DateField(
+        label="Fecha de regreso:",
         widget=forms.DateInput(attrs={"class": "form-control form-control-lg", "type": "date", "id": "return-date"})
+    )
+    
+    condition_notes = forms.DateField(
+        label="Detalles del libro",
+        widget=forms.TextInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese los detalles del libro"})
     )
 
     fine = forms.DecimalField(
-        widget=forms.NumberInput(attrs={"class": "form-control form-control-lg", "placeholder": "Enter Fine"})
+        label="Sanción",
+        widget=forms.NumberInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese sanción"})
     )
 
     class Meta:
         model = BorrowedBook
-        fields = ["book", "member", "return_date", "fine"]
+        fields = ["book", "member", "return_date", "condition_notes", "fine"]
 
 
 class LendMemberBookForm(forms.ModelForm):
@@ -117,6 +131,12 @@ class LendMemberBookForm(forms.ModelForm):
     return_date = forms.DateField(
         widget=forms.DateInput(attrs={"class": "form-control form-control-lg", "type": "date", "id": "return-date"})
     )
+    
+    condition_notes = forms.DateField(
+        label="Detalles del libro",
+        widget=forms.TextInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese los detalles del libro"})
+    )
+
 
     fine = forms.DecimalField(
         widget=forms.NumberInput(attrs={"class": "form-control form-control-lg", "placeholder": "Enter Fine"})
@@ -124,7 +144,7 @@ class LendMemberBookForm(forms.ModelForm):
 
     class Meta:
         model = BorrowedBook
-        fields = ["book", "return_date", "fine"]
+        fields = ["book", "return_date", "condition_notes", "fine"]
 
 
 class UpdateBorrowedBookForm(forms.ModelForm):
