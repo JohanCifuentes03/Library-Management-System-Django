@@ -55,6 +55,9 @@ class Book(AbstractBaseModel):
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
     quantity = models.PositiveIntegerField(default=0)
     clasification_number = models.CharField(max_length=20, default="N/A")
+    borrowing_fee = models.DecimalField(
+        max_digits=10, decimal_places=2, default=0.00, validators=[MinValueValidator(0.00)]
+    )
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="available")
     
     def __str__(self):
@@ -66,6 +69,7 @@ class BorrowedBook(AbstractBaseModel):
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name="borrowed_books")
     return_date = models.DateField()
     returned = models.BooleanField(default=False)
+    fine = models.DecimalField(max_digits=10, decimal_places=2, default=0.00, validators=[MinValueValidator(0.00)])
     condition_notes = models.TextField(
         verbose_name="Descripción del estado del libro",
         null=True,
