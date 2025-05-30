@@ -1,40 +1,98 @@
 {% extends 'base.html' %}
 {% block title %}Agregar miembro{% endblock %}
 {% block content %}
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const fechaNacimiento = document.getElementById("id_fecha_nacimiento");
+    const acudienteCampos = document.getElementById("acudiente-campos");
+
+    function calcularEdad(fecha) {
+      const hoy = new Date();
+      const nacimiento = new Date(fecha);
+      let edad = hoy.getFullYear() - nacimiento.getFullYear();
+      const mes = hoy.getMonth() - nacimiento.getMonth();
+      if (mes < 0 || (mes === 0 && hoy.getDate() < nacimiento.getDate())) {
+        edad--;
+      }
+      return edad;
+    }
+
+    function validarEdad() {
+      const fecha = fechaNacimiento.value;
+      if (!fecha) {
+        acudienteCampos.style.display = "none";
+        return;
+      }
+
+      const edad = calcularEdad(fecha);
+      if (edad < 18) {
+        acudienteCampos.style.display = "block";
+      } else {
+        acudienteCampos.style.display = "none";
+      }
+    }
+
+    validarEdad(); // Ejecutar al cargar por si ya hay una fecha
+    fechaNacimiento.addEventListener("change", validarEdad);
+  });
+</script>
+
 <div class="row">
-    <div class="col-md-6 grid-margin stretch-card">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">Agregar miembro</h4>
-          <p class="card-description">
-            Agregar miembro de la biblioteca
-          </p>
-          {% if form.non_field_errors %}
-            <div class="alert alert-danger form-error" role="alert">
-                {% for error in form.non_field_errors %}
-                    {{ error }}
-                {% endfor %}
-            </div>
+  <div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Agregar miembro</h4>
+        <p class="card-description">Agregar miembro de la biblioteca</p>
+
+        {% if form.non_field_errors %}
+        <div class="alert alert-danger form-error" role="alert">
+          {% for error in form.non_field_errors %}
+            {{ error }}
+          {% endfor %}
+        </div>
         {% endif %}
-          <form method="POST">
-            {% csrf_token %}
+
+        <form method="POST">
+          {% csrf_token %}
+          <div class="form-group">
+            {{ form.name.label_tag }}
+            {{ form.name }}
+            <div class="form-error">{{ form.name.errors }}</div>
+          </div>
+
+          <div class="form-group">
+            {{ form.email.label_tag }}
+            {{ form.email }}
+            <div class="form-error">{{ form.email.errors }}</div>
+          </div>
+
+          <div class="form-group">
+            {{ form.fecha_nacimiento.label_tag }}
+            {{ form.fecha_nacimiento }}
+            <div class="form-error">{{ form.fecha_nacimiento.errors }}</div>
+          </div>
+
+          <!-- Agrupamos los dos campos dentro de este div -->
+          <div id="acudiente-campos">
             <div class="form-group">
-              {{ form.name.label_tag }}
-              {{ form.name }}
-                <div class="form-error">{{ form.name.errors }}</div>
-            </div>
-            <div class="form-group">
-                {{ form.email.label_tag }}
-                {{ form.email }}
-                    <div class="form-error">{{ form.email.errors }}</div>
+              {{ form.acudiente_nombre.label_tag }}
+              {{ form.acudiente_nombre }}
+              <div class="form-error">{{ form.acudiente_nombre.errors }}</div>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-md me-2">Agregar</button>
-            <a class="btn btn-light" href="{% url 'members' %}">Cancelar</a>
-          </form>
-        </div>
+            <div class="form-group">
+              {{ form.acudiente_telefono.label_tag }}
+              {{ form.acudiente_telefono }}
+              <div class="form-error">{{ form.acudiente_telefono.errors }}</div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-md me-2">Agregar</button>
+          <a class="btn btn-light" href="{% url 'members' %}">Cancelar</a>
+        </form>
       </div>
     </div>
   </div>
-
-{% endblock %}
+</div>
+{% endblock %}

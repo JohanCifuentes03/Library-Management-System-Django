@@ -35,8 +35,13 @@ class Member(AbstractBaseModel):
     amount_due = models.DecimalField(
         max_digits=10, decimal_places=2, default=0.00, validators=[MinValueValidator(0.00), MaxValueValidator(500.00)]
     )
+    
+    # NUEVOS CAMPOS PARA VALIDACIÓN Y ACUDIENTE
+    fecha_nacimiento = models.DateField(null=True, blank=True)
+    acudiente_nombre = models.CharField(max_length=100, blank=True)
+    acudiente_telefono = models.CharField(max_length=20, blank=True)
 
-    def __str__(self):
+    def _str_(self):
         return f"{self.name}"
 
     def calculate_amount_due(self):
@@ -45,8 +50,16 @@ class Member(AbstractBaseModel):
         for book in borrowed_books:
             if book.return_date < timezone.now().date() and not book.returned:
                 amount += book.fine
-
         return amount
+
+    def es_menor_de_edad(self):
+        if self.fecha_nacimiento:
+            today = timezone.now().date()
+            edad = today.year - self.fecha_nacimiento.year - (
+                (today.month, today.day) < (self.fecha_nacimiento.month, self.fecha_nacimiento.day)
+            )
+            return edad < 18
+        return False
 
 
 class Book(AbstractBaseModel):
