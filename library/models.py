@@ -32,10 +32,7 @@ PAYMENT_METHOD_CHOICES = (
 class Member(AbstractBaseModel):
     name = models.CharField(max_length=100)
     email = models.EmailField()
-    amount_due = models.DecimalField(
-        max_digits=10, decimal_places=2, default=0.00, validators=[MinValueValidator(0.00), MaxValueValidator(500.00)]
-    )
-    
+        
     # NUEVOS CAMPOS PARA VALIDACIÓN Y ACUDIENTE
     fecha_nacimiento = models.DateField(null=True, blank=True)
     acudiente_nombre = models.CharField(max_length=100, blank=True)
@@ -68,9 +65,6 @@ class Book(AbstractBaseModel):
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
     quantity = models.PositiveIntegerField(default=0)
     clasification_number = models.CharField(max_length=20, default="N/A")
-    borrowing_fee = models.DecimalField(
-        max_digits=10, decimal_places=2, default=0.00, validators=[MinValueValidator(0.00)]
-    )
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="available")
     
     def __str__(self):
@@ -93,10 +87,3 @@ class BorrowedBook(AbstractBaseModel):
         return f"{self.member.name} borrowed {self.book.title} on {self.created_at}"
 
 
-class Transaction(AbstractBaseModel):
-    member = models.ForeignKey(Member, on_delete=models.CASCADE, related_name="transactions")
-    amount = models.DecimalField(max_digits=10, decimal_places=2, default=0.00, validators=[MinValueValidator(0.00)])
-    payment_method = models.CharField(max_length=20, choices=PAYMENT_METHOD_CHOICES)
-
-    def __str__(self):
-        return f"{self.member.name} paid {self.amount} via {self.payment_method}"

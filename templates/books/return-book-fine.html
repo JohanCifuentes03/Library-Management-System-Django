@@ -1,35 +1,23 @@
 {% extends 'base.html' %}
-{% block title %}Update Book{% endblock %}
+{% block title %}Devolver Libro Vencido{% endblock %}
 {% block content %}
 <div class="row">
-    <div class="col-md-6 grid-margin stretch-card">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title">Pay Fine</h4>
-          <p class="card-description">
-            Make Payment For Fine
-          </p>
-          {% if form.non_field_errors %}
-            <div class="alert alert-danger form-error" role="alert">
-                {% for error in form.non_field_errors %}
-                    {{ error }}
-                {% endfor %}
-            </div>
-          {% endif %}
-          <form method="POST">
-            {% csrf_token %}
-            <div class="form-group">
-              {{ form.payment_method.label_tag }}
-              {{ form.payment_method }}
-                  <div class="form-error">{{ form.payment_method.errors }}</div>
-            </div>
+  <div class="col-md-6 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Devolver Libro</h4>
+        <p class="card-description">
+          Este libro está vencido, pero puedes marcarlo como devuelto.
+        </p>
 
-            <button type="submit" class="btn btn-primary btn-md me-2">Pay</button>
-            <a class="btn btn-light" href="{% url 'lent-books' %}">Cancel</a>
-          </form>
-        </div>
+        <form method="POST">
+          {% csrf_token %}
+          <p>¿Estás seguro de marcar este libro como devuelto?</p>
+          <button type="submit" class="btn btn-success btn-md me-2">Confirmar devolución</button>
+          <a class="btn btn-light" href="{% url 'lent-books' %}">Cancelar</a>
+        </form>
       </div>
     </div>
   </div>
-
-{% endblock %}
+</div>
+{% endblock %}

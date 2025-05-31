@@ -96,11 +96,6 @@ class AddBookForm(forms.ModelForm):
         widget=forms.NumberInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese la cantidad"})
     )
     
-    borrowing_fee = forms.DecimalField(
-        label="Tarifa de préstamo:",
-        widget=forms.NumberInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese la tarifa de préstamo"})
-    )
-    
     clasification_number = forms.CharField(
         label="Clasificación",
         widget=forms.TextInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese la clasificación del libro"})
@@ -108,7 +103,7 @@ class AddBookForm(forms.ModelForm):
 
     class Meta:
         model = Book
-        fields = ["title", "author", "category", "quantity", "clasification_number", "borrowing_fee"]
+        fields = ["title", "author", "category", "quantity", "clasification_number"]
 
 
 class LendBookForm(forms.ModelForm):
@@ -198,12 +193,3 @@ class UpdateBorrowedBookForm(forms.ModelForm):
     class Meta:
         model = BorrowedBook
         fields = ["return_date", "fine"]
-
-
-class PaymentForm(forms.Form):
-    payment_method = forms.ChoiceField(
-        choices=PAYMENT_METHOD_CHOICES, widget=forms.Select(attrs={"class": "form-control form-control-lg"})
-    )
-
-    class Meta:
-        fields = ["payment_method"]
