@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
-{% block title %}Add Book{% endblock %}
+{% block title %}Préstamo de Libro{% endblock %}
 {% block content %}
 <div class="row">
     <div class="col-md-6 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Issue Book</h4>
+          <h4 class="card-title">Préstamo de Libro</h4>
           <p class="card-description">
-            Issue A Borrowed Book To {{ member.name }}
+            Prestar un libro a {{ member.name }}
           </p>
           {% if form.non_field_errors %}
             <div class="alert alert-danger form-error" role="alert">
@@ -47,8 +47,8 @@
                   <div class="form-error">{{ payment_form.payment_method.errors }}</div>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-md me-2">Issue</button>
-            <a href="{% url 'members' %}" class="btn btn-light">Cancel</a>
+            <button type="submit" class="btn btn-primary btn-md me-2">Prestar</button>
+            <a href="{% url 'members' %}" class="btn btn-light">Cancelar</a>
           </form>
         </div>
       </div>

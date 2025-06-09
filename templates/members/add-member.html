@@ -26,7 +26,13 @@
             <div class="form-group">
                 {{ form.email.label_tag }}
                 {{ form.email }}
-                    <div class="form-error">{{ form.email.errors }}</div>
+                <div class="form-error">{{ form.email.errors }}</div>
+            </div>
+            <div class="form-group">
+                {{ form.phone.label_tag }}
+                {{ form.phone }}
+                <small class="form-text text-muted">{{ form.phone.help_text }}</small>
+                <div class="form-error">{{ form.phone.errors }}</div>
             </div>
 
             <button type="submit" class="btn btn-primary btn-md me-2">Agregar</button>

@@ -83,8 +83,8 @@ Visit: [http://localhost:8000](http://localhost:8000)
 To run the project using Docker and Docker Compose (or Podman Compose):
 
 ```bash
-podman-compose build
-podman-compose up
+podman compose build
+podman compose up
 ```
 
 Ensure your `.env` file is correctly configured before running Docker.

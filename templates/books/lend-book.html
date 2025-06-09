@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
-{% block title %}Add Book{% endblock %}
+{% block title %}Préstamo de Libro{% endblock %}
 {% block content %}
 <div class="row">
     <div class="col-md-6 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Préstamo de libro</h4>
+          <h4 class="card-title">Préstamo de Libro</h4>
           <p class="card-description">
-              Prestar un libro a un miembro          </p>
+              Prestar un libro a un miembro
+          </p>
           {% if form.non_field_errors %}
             <div class="alert alert-danger form-error" role="alert">
                 {% for error in form.non_field_errors %}

@@ -7,17 +7,30 @@ from .models import CATEGORY_CHOICES, PAYMENT_METHOD_CHOICES, Book, BorrowedBook
 
 class AddMemberForm(forms.ModelForm):
     name = forms.CharField(
-        label="Nombre",
-        widget=forms.TextInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese el nombre del miembro"})
+        label="Nombre completo",
+        widget=forms.TextInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese el nombre completo"})
     )
     email = forms.EmailField(
-        label="Correo",
-        widget=forms.EmailInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese el correo del miembro"})
+        label="Correo electrónico",
+        required=False,
+        widget=forms.EmailInput(attrs={
+            "class": "form-control form-control-lg", 
+            "placeholder": "Ej: usuario@ejemplo.com"
+        })
+    )
+    phone = forms.CharField(
+        label="Teléfono",
+        required=False,
+        max_length=20,
+        widget=forms.TextInput(attrs={
+            "class": "form-control form-control-lg", 
+            "placeholder": "Ej: +57 1234567890"
+        })
     )
 
     class Meta:
         model = Member
-        fields = ["name", "email"]
+        fields = ["name", "email", "phone"]
 
     def clean_email(self):
         email = self.cleaned_data.get("email")
@@ -30,15 +43,30 @@ class AddMemberForm(forms.ModelForm):
 
 class UpdateMemberForm(forms.ModelForm):
     name = forms.CharField(
-        widget=forms.TextInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese el nombre del miembro"})
+        label="Nombre completo",
+        widget=forms.TextInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese el nombre completo"})
     )
     email = forms.EmailField(
-        widget=forms.EmailInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese el correo del miembro"})
+        label="Correo electrónico",
+        required=False,
+        widget=forms.EmailInput(attrs={
+            "class": "form-control form-control-lg", 
+            "placeholder": "Ej: usuario@ejemplo.com"
+        })
+    )
+    phone = forms.CharField(
+        label="Teléfono",
+        required=False,
+        max_length=20,
+        widget=forms.TextInput(attrs={
+            "class": "form-control form-control-lg", 
+            "placeholder": "Ej: +57 1234567890"
+        })
     )
 
     class Meta:
         model = Member
-        fields = ["name", "email"]
+        fields = ["name", "email", "phone"]
 
     def clean_email(self):
         email = self.cleaned_data.get("email")
@@ -151,7 +179,7 @@ class LendMemberBookForm(forms.ModelForm):
 
 
     fine = forms.DecimalField(
-        widget=forms.NumberInput(attrs={"class": "form-control form-control-lg", "placeholder": "Enter Fine"})
+        widget=forms.NumberInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese sanción"})
     )
 
     class Meta:
@@ -165,12 +193,22 @@ class UpdateBorrowedBookForm(forms.ModelForm):
     )
 
     fine = forms.DecimalField(
-        widget=forms.NumberInput(attrs={"class": "form-control form-control-lg", "placeholder": "Enter Fine"})
+        widget=forms.NumberInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese sanción"})
+    )
+
+    condition_notes = forms.CharField(
+        label="Detalles del libro",
+        required=False,
+        widget=forms.Textarea(attrs={
+            "class": "form-control form-control-lg",
+            "placeholder": "Ingrese los detalles del libro",
+            "rows": 3
+        })
     )
 
     class Meta:
         model = BorrowedBook
-        fields = ["return_date", "fine"]
+        fields = ["return_date", "fine", "condition_notes"]
 
 
 class PaymentForm(forms.Form):

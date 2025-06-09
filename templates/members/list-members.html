@@ -33,6 +33,7 @@
                         <th>Índice</th>
                         <th>Nombre</th>
                         <th>Correo</th>
+                        <th>Teléfono</th>
                         <th>Cantidad adeudada</th>
                         <th colspan="3">Acciones</th>
                     </tr>
@@ -42,7 +43,8 @@
                             <tr>
                                 <td>{{ forloop.counter }}</td>
                                 <td>{{ member.name }}</td>
-                                <td>{{ member.email }}</td>
+                                <td>{{ member.email|default:"-" }}</td>
+                                <td>{{ member.phone|default:"-" }}</td>
                                 <td>{{ member.calculate_amount_due }}</td>
                                 <td>
                                     <a href="{% url 'lend-member-book' member.pk %}" class="btn btn-success">Préstamo de libros</a>

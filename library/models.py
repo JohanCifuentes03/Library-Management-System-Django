@@ -30,10 +30,15 @@ PAYMENT_METHOD_CHOICES = (
 
 
 class Member(AbstractBaseModel):
-    name = models.CharField(max_length=100)
-    email = models.EmailField()
+    name = models.CharField(max_length=100, verbose_name="Nombre completo")
+    email = models.EmailField(blank=True, null=True, verbose_name="Correo electrónico")
+    phone = models.CharField(max_length=20, blank=True, null=True, verbose_name="Teléfono")
     amount_due = models.DecimalField(
-        max_digits=10, decimal_places=2, default=0.00, validators=[MinValueValidator(0.00), MaxValueValidator(500.00)]
+        max_digits=10, 
+        decimal_places=2, 
+        default=0.00, 
+        validators=[MinValueValidator(0.00), MaxValueValidator(500.00)],
+        verbose_name="Deuda actual"
     )
 
     def __str__(self):

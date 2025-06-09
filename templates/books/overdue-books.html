@@ -1,25 +1,25 @@
 {% extends 'base.html' %}
-{% block title %}Add Member{% endblock %}
+{% block title %}Libros Atrasados{% endblock %}
 {% block content %}
 <div class="row">
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-header">
                 <div class="col-5">
-                  <h5 class="card-title mt-4">OVERDUE BOOKS</h5>
+                  <h5 class="card-title mt-4">LIBROS ATRASADOS</h5>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
                         <div class="mb-3">
-                            <a href="{% url 'lend-book' %}" class="btn btn-primary">Lend Book</a>
+                            <a href="{% url 'lend-book' %}" class="btn btn-primary">Prestar Libro</a>
                         </div>
                     </div>
                     <div class="col-md-8">
                         <form method="POST">
                             {% csrf_token %}
                             <div class="input-group">
-                                <input type="text" class="form-control form-control-lg" placeholder="Search Book by Title or Author" name="query">
-                                <button class="btn btn-primary" type="submit">Search</button>
+                                <input type="text" class="form-control form-control-lg" placeholder="Buscar libro por título o autor" name="query">
+                                <button class="btn btn-primary" type="submit">Buscar</button>
                             </div>
                         </form>
                     </div>
@@ -30,13 +30,13 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>Index</th>
-                        <th>Title</th>
-                        <th>Return Date</th>
-                        <th>Member</th>
-                        <th>Fine</th>
-                        <th>Status</th>
-                        <th colspan="3">Actions</th>
+                        <th>#</th>
+                        <th>Título</th>
+                        <th>Fecha de Devolución</th>
+                        <th>Usuario</th>
+                        <th>Multa</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -49,9 +49,9 @@
                                 <td>{{ book.fine }}</td>
                                 <td class="{% if book.returned %} text-success {% else %} text-danger {% endif %}">
                                     {% if book.returned %}
-                                        Returned
+                                        Devuelto
                                     {% else %}
-                                        Not Returned
+                                        Devolver
                                     {% endif %}
                                 </td>
                                 <!-- button to change status -->
@@ -59,10 +59,10 @@
                                     <a href="{% url 'return-book' book.pk %}" class="btn {% if book.returned %} disabled btn-light {% else %} btn-success{% endif %}">{% if book.returned %}Returned{% else %} Return {% endif %}</a>
                                 </td>
                                 <td>
-                                    <a href="{% url 'edit-borrowed-book' book.pk %}" class="btn btn-primary">Edit</a>
+                                    <a href="{% url 'edit-borrowed-book' book.pk %}" class="btn btn-primary">Editar</a>
                                 </td>
                                 <td>
-                                    <a href="{% url 'delete-borrowed-book' book.pk %}" class="btn btn-danger">Remove</a>
+                                    <a href="{% url 'delete-borrowed-book' book.pk %}" class="btn btn-danger">Eliminar</a>
                                 </td>
                             </tr>
                         {% endfor %}

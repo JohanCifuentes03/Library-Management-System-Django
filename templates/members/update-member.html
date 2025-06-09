@@ -29,6 +29,12 @@
                     <div class="form-error">{{ form.email.errors }}</div>
             </div>
 
+            <div class="form-group">
+                {{ form.phone.label_tag }}
+                {{ form.phone }}
+                    <div class="form-error">{{ form.phone.errors }}</div>
+            </div>
+
             <button type="submit" class="btn btn-primary btn-md me-2">Actualizar</button>
             <button class="btn btn-light">Cancelar</button>
           </form>
