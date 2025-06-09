@@ -5,9 +5,9 @@
     <div class="col-md-6 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Update Book</h4>
+          <h4 class="card-title">Actualizar Libro</h4>
           <p class="card-description">
-            Add A Book
+            Agregar Libro
           </p>
           {% if form.non_field_errors %}
             <div class="alert alert-danger form-error" role="alert">
@@ -18,6 +18,12 @@
           {% endif %}
           <form method="POST">
             {% csrf_token %}
+            {% if form.errors %}
+            <div class="alert alert-danger">
+                  <strong>Errores:</strong>
+                  {{ form.errors }}
+            </div>
+              {% endif %}
             <div class="form-group">
               {{ form.title.label_tag }}
               {{ form.title }}
@@ -41,13 +47,12 @@
             </div>
 
             <div class="form-group">
-                {{ form.borrowing_fee.label_tag }}
-                {{ form.borrowing_fee }}
-                    <div class="form-error">{{ form.borrowing_fee.errors }}</div>
+                {{ form.clasification_number.label_tag }}
+                {{ form.clasification_number }}
+                <div class="form-error">{{ form.clasification_number.errors }}</div>
             </div>
-
-            <button type="submit" class="btn btn-primary btn-md me-2">Update</button>
-            <a class="btn btn-light" href="{% url 'books' %}">Cancel</a>
+            <button type="submit" class="btn btn-primary btn-md me-2">Actualizar</button>
+            <a class="btn btn-light" href="{% url 'books' %}">Cancelar</a>
           </form>
         </div>
       </div>

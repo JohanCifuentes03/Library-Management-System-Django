@@ -50,20 +50,20 @@
                                 <td>{{ book.condition_notes }}</td>
                                 <td class="{% if book.returned %} text-success {% else %} text-danger {% endif %}">
                                     {% if book.returned %}
-                                        Returned
+                                        Devuelto
                                     {% else %}
-                                        Not Returned
+                                        No Devuelto
                                     {% endif %}
                                 </td>
                                 <!-- button to change status -->
                                 <td>
-                                    <a href="{% url 'return-book' book.pk %}" class="btn {% if book.returned %} disabled btn-light {% else %} btn-success{% endif %}">{% if book.returned %}Returned{% else %} Return {% endif %}</a>
+                                    <a href="{% url 'return-book-fine' book.pk %}" class="btn {% if book.returned %} disabled btn-light {% else %} btn-success{% endif %}">{% if book.returned %}Returned{% else %} Devolver {% endif %}</a>
                                 </td>
                                 <td>
-                                    <a href="{% url 'edit-borrowed-book' book.pk %}" class="btn btn-primary">Edit</a>
+                                    <a href="{% url 'edit-borrowed-book' book.pk %}" class="btn btn-primary">Editar</a>
                                 </td>
                                 <td>
-                                    <a href="{% url 'delete-borrowed-book' book.pk %}" class="btn btn-danger">Remove</a>
+                                    <a href="{% url 'delete-borrowed-book' book.pk %}" class="btn btn-danger">Eliminar</a>
                                 </td>
                             </tr>
                         {% endfor %}

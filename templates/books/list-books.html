@@ -31,8 +31,8 @@
                         </form>
                     </div>
                 </div>
-
             </div>
+
             <div class="card-body">
                 <div class="table-responsive">
                 <table class="table table-striped">
@@ -56,18 +56,19 @@
                                 <td>{{ book.author }}</td>
                                 <td>{{ book.category }}</td>
                                 <td>{{ book.clasification_number }}</td>
+                                <td>{{ book.quantity }}</td>
                                 <td class="{% if book.status == 'available' %} text-success {% else %} text-danger {% endif %}">
                                     {% if book.status == 'available' %}
-                                        Available
+                                        Disponible
                                     {% else %}
-                                        Not Available
+                                        No Disponible
                                     {% endif %}
                                 </td>
                                 <td>
-                                    <a href="{% url 'update-book' book.pk %}" class="btn btn-primary">Edit</a>
+                                    <a href="{% url 'update-book' book.pk %}" class="btn btn-primary">Editar</a>
                                 </td>
                                 <td>
-                                    <a href="{% url 'delete-book' book.pk %}" class="btn btn-danger">Remove</a>
+                                    <a href="{% url 'delete-book' book.pk %}" class="btn btn-danger">Eliminar</a>
                                 </td>
                             </tr>
                         {% endfor %}

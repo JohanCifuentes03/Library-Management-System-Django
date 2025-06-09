@@ -38,7 +38,7 @@ class Member(AbstractBaseModel):
     acudiente_nombre = models.CharField(max_length=100, blank=True)
     acudiente_telefono = models.CharField(max_length=20, blank=True)
 
-    def _str_(self):
+    def __str__(self):
         return f"{self.name}"
 
     def calculate_amount_due(self):
@@ -68,7 +68,7 @@ class Book(AbstractBaseModel):
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="available")
     
     def __str__(self):
-        return f"{self.title} by {self.author}"
+        return f"{self.title} por {self.author}"
 
 
 class BorrowedBook(AbstractBaseModel):

@@ -33,7 +33,9 @@
                         <th>Índice</th>
                         <th>Nombre</th>
                         <th>Correo</th>
-                        <th>Cantidad adeudada</th>
+                        <th>Cantidad </th>
+                        <th>Nombre del Acudiente</th>
+                        <th>Teléfono del Acudiente</th>
                         <th colspan="3">Acciones</th>
                     </tr>
                     </thead>
@@ -44,6 +46,8 @@
                                 <td>{{ member.name }}</td>
                                 <td>{{ member.email }}</td>
                                 <td>{{ member.calculate_amount_due }}</td>
+                                <td>{{ member.acudiente_nombre }}</td>
+                                <td>{{ member.acudiente_telefono }}</td>
                                 <td>
                                     <a href="{% url 'lend-member-book' member.pk %}" class="btn btn-success">Préstamo de libros</a>
                                 </td>

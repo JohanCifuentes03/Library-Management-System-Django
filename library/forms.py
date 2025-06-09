@@ -112,7 +112,10 @@ class LendBookForm(forms.ModelForm):
         queryset=Book.objects.filter(quantity__gt=0),
         empty_label=None,
         widget=forms.Select(
-            attrs={"class": "form-control form-control-lg js-example-basic-multiple w-100", "multiple": "multiple"}
+            attrs={
+                "class": "form-control form-control-lg js-example-basic-multiple w-100",
+                "multiple": "multiple"
+            }
         ),
     )
 
@@ -120,32 +123,44 @@ class LendBookForm(forms.ModelForm):
         label="Miembro",
         queryset=Member.objects.all(),
         empty_label=None,
-        widget=forms.Select(attrs={"class": "form-control form-control-lg js-example-basic-single w-100"}),
+        widget=forms.Select(
+            attrs={
+                "class": "form-control form-control-lg js-example-basic-single w-100"
+            }
+        )
     )
 
     return_date = forms.DateField(
         label="Fecha de regreso:",
-        widget=forms.DateInput(attrs={"class": "form-control form-control-lg", "type": "date", "id": "return-date"})
+        widget=forms.DateInput(
+            attrs={
+                "class": "form-control form-control-lg",
+                "type": "date",
+                "id": "return-date"
+            }
+        )
     )
-    
+
     condition_notes = forms.CharField(
         label="Detalles del libro",
         required=False,
-        widget=forms.Textarea(attrs={
-            "class": "form-control form-control-lg",
-            "placeholder": "Ingrese los detalles del libro",
-            "rows": 3
-        })
+        widget=forms.Textarea(
+            attrs={
+                "class": "form-control form-control-lg",
+                "placeholder": "Ingrese los detalles del libro",
+                "rows": 3
+            }
+        )
     )
 
-    fine = forms.DecimalField(
-        label="Sanción",
-        widget=forms.NumberInput(attrs={"class": "form-control form-control-lg", "placeholder": "Ingrese sanción"})
-    )
 
     class Meta:
         model = BorrowedBook
-        fields = ["book", "member", "return_date", "condition_notes", "fine"]
+        fields = ["book", "member", "return_date", "condition_notes"]
+
+    def _init_(self, *args, **kwargs):
+        super()._init_(*args, **kwargs)
+        self.fields['member'].label_from_instance = lambda obj: f"{obj.name} ({obj.email})"
 
 
 class LendMemberBookForm(forms.ModelForm):
@@ -183,13 +198,12 @@ class LendMemberBookForm(forms.ModelForm):
 
 class UpdateBorrowedBookForm(forms.ModelForm):
     return_date = forms.DateField(
+                label="Fecha de devolución",
         widget=forms.DateInput(attrs={"class": "form-control form-control-lg", "type": "date", "id": "return-date"})
     )
 
-    fine = forms.DecimalField(
-        widget=forms.NumberInput(attrs={"class": "form-control form-control-lg", "placeholder": "Enter Fine"})
-    )
+
 
     class Meta:
         model = BorrowedBook
-        fields = ["return_date", "fine"]
+        fields = ["return_date"]
